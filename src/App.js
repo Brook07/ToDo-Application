@@ -1,9 +1,26 @@
 import React,{useState} from 'react';
+import { AiOutlineDelete } from "react-icons/ai";
+import { BsCheck } from "react-icons/bs";
 import "./App.css";
 
 
 function App() {
     const [isCompleteScreen,setIsCompleteScreen] = useState(false);
+    const [allTodos,setTodos] = useState([]);
+    const [newTitle,setNewTitle] = useState("");
+    const [newDescription,setNewDescription] = useState("");
+
+    const handleAddTodo = ()=>{
+      let newTodoItem = {
+        title: newTitle,
+        description: newDescription
+      }
+
+      let updatedTodoArr = [...allTodos];
+      updatedTodoArr.push(newTodoItem);
+      setTodos(updatedTodoArr);
+    }
+
     return (
     <div className="App">
       <h1>My Todo Application</h1>
@@ -13,16 +30,16 @@ function App() {
 
           <div className='todo-input-item'>
             <label>Title</label>
-            <input type="text" placeholder="What's the task?" />
+            <input type="text" value={newTitle} onChange={(e)=>setNewTitle(e.target.value)} placeholder="What's the task?" />
           </div>
 
           <div className="todo-input-item">
             <label>Description</label>
-            <input type="text" placeholder="What's the Description?" />
+            <input type="text" value={newDescription} onChange={(e)=>setNewDescription(e.target.value)} placeholder="What's the Description?" />
           </div>
 
           <div className="todo-input-item">
-            <button type="button" className="primaryBtn">
+            <button type="button" onClick={handleAddTodo} className="primaryBtn">
               Add
             </button>
           </div>
@@ -35,13 +52,24 @@ function App() {
         
         <div className="todo-list">
 
-        <div className="todo-list-item">
-            <h3>Task 1</h3>
-            <p>Description</p>
+        {allTodos.map((item,index)=>{
+          return(
+            <div className="todo-list-item" key={index}>
+          <div>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            </div>
+
+             <div>
+              <AiOutlineDelete className='icon'/>
+              <BsCheck className="check-icon" />
+             </div>
+            </div>
+          )
+        })}
           </div>
         </div>
       </div>
-    </div>
   );
 }
 
