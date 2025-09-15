@@ -46,7 +46,7 @@ The **localStorage** is used to store two arrays:
     npm start
     ```
 
-4. Open the app in your browser at [http://localhost:3001](http://localhost:3000) to start using the Todo application.
+4. Open the app in your browser at [http://localhost:3001](http://localhost:3001) to start using the Todo application.
 
 ---
 
