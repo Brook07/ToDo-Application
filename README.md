@@ -60,7 +60,7 @@ The **localStorage** is used to store two arrays:
 
 ## 📝 Screenshots
 
-![Todo Application Screenshot](https://via.placeholder.com/600x400.png)  
+![Todo App Screenshot](https://github.com/Brook07/ToDo-Application/blob/main/UI%20Screenshot)  
 
 ---
 
