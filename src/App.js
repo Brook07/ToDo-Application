@@ -61,10 +61,27 @@ function App() {
         localStorage.setItem('todolist', JSON.stringify(updatedAllTodos));
     };
 
+    const handleDeleteCompletedTodo= (index) => {
+        let reducedTodo = [...completedTodos];
+        reducedTodo.splice(index, 1);
+
+        localStorage.setItem('completedTodos', JSON.stringify(reducedTodo));
+        setCompletedTodos(reducedTodo);
+
+        // Remove completed todo if deleted from the completed screen
+        let reducedCompleted = [...completedTodos];
+        reducedCompleted.splice(index, 1);
+        setCompletedTodos(reducedCompleted);
+    };
+
     useEffect(() => {
         let savedTodo = JSON.parse(localStorage.getItem('todolist'));
+        let savedCompleted = JSON.parse(localStorage.getItem('completedTodos'));
         if (savedTodo) {
             setTodos(savedTodo);
+        }
+        if  (savedCompleted){
+            setCompletedTodos(savedCompleted);
         }
     }, []);
 
@@ -124,7 +141,7 @@ function App() {
                                 </div>
 
                                 <div>
-                                    <AiOutlineDelete className='icon' onClick={() => handleDeleteTodo(index)} />
+                                    <AiOutlineDelete className='icon' onClick={() => handleDeleteCompletedTodo (index)} />
                                 </div>
                             </div>
                         );
